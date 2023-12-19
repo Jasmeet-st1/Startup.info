@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 8000;
 
 app.use(cors(
     {
-        origin: 'https://startup-info.vercel.app/',
-        // origin: '*',
+        // origin: ['https://startup-info.vercel.app/'],
+        origin: '*',
         methods: ["POST", "GET"],
         credentials:true
     }
