@@ -28,6 +28,8 @@ function App() {
   // state to store form opening condition
   const [formOpen,setFormOpen]=useState(false);
 
+  axios.defaults.withCredentials=true;
+
 
   // fetch entire list on first render and set industry filter list on first render only
   useEffect(()=>{
