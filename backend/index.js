@@ -30,6 +30,10 @@ app.use(cors(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/",(req,res)=>{
+   res.send("Server is working"); 
+});
+
 app.get("/products", (req, res) => {
 
     const industryFilter = (req.query.industry === "ALL" ? "" : req.query.industry);
