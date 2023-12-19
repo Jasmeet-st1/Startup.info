@@ -12,6 +12,14 @@ env.config();
 const uri = process.env.DB_URI;
 const PORT = process.env.PORT || 8000;
 
+app.use(cors(
+    {
+        origin: ['https://startup-info.vercel.app/'],
+        methods: ["POST", "GET"],
+        credentials:true
+    }
+));
+
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(PORT, () => {
@@ -20,13 +28,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     })
     .catch(err => console.log(err));
 
-app.use(cors(
-    {
-        origin: ['https://startup-info.vercel.app'],
-        methods: ["POST", "GET"],
-        credentials:true
-    }
-));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
