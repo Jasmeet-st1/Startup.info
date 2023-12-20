@@ -26,9 +26,6 @@ export default function List({ list, isLoading, setIsLoading }) {
         )
     }
 
-    if (isLoading) {
-        return LoadingScreen();
-    }
 
     useEffect(() => {
         setPage(1);
@@ -46,6 +43,9 @@ export default function List({ list, isLoading, setIsLoading }) {
 
     }, [page]);
 
+    if (isLoading) {
+        return LoadingScreen();
+    }
 
     if (list.length === 0) {
         return (
