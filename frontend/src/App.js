@@ -44,7 +44,9 @@ function App() {
         const productList = result.data;
         console.log(productList);
   
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setList(productList);
+
   
         // Compute all unique industries in alphabetical sorted manner
         let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
