@@ -44,7 +44,6 @@ function App() {
         const productList = result.data;
         console.log(productList);
   
-        await new Promise(resolve => setTimeout(resolve, 3000));
         
         setList(productList);
 
@@ -72,6 +71,7 @@ function App() {
         }));
   
         setuniqueIndustries(options);
+        await new Promise(resolve => setTimeout(resolve, 3000));
       } catch (error) {
         console.log(error);
       } finally {
