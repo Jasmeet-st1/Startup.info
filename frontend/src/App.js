@@ -74,7 +74,6 @@ function App() {
       } catch (error) {
         console.log(error);
       } finally {
-        await new Promise(resolve => setTimeout(resolve, 3000));
         setIsLoading(false);
       }
     }
