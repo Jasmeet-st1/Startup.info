@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-export default function List({ list }) {
+export default function List({ list, isLoading, setIsLoading }) {
 
     const [page, setPage] = useState(1);
 
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
     function LoadingScreen() {
         return (
@@ -40,7 +40,7 @@ export default function List({ list }) {
 
         }, 2000);
 
-    }, [page,list]);
+    }, [page]);
 
 
     if (list.length === 0) {
