@@ -72,7 +72,7 @@ function App() {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        setTimeout( ()=>setIsLoading(false) , 2000);
       }
     };
   
