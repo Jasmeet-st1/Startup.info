@@ -42,6 +42,7 @@ function App() {
   
         const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
         const productList = result.data;
+        console.log(productList);
   
         setList(productList);
   
