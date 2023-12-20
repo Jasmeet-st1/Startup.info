@@ -71,8 +71,9 @@ function App() {
       setuniqueIndustries(options);
       // setIsLoading(false);
     })
-    .then((result)=>setIsLoading(false))
+    // .then((result)=>setIsLoading(false))
     .catch(err=>console.log(err));
+    setIsLoading(false);
   },[]);
 
 
@@ -80,14 +81,15 @@ function App() {
   function searchQuery(n,e){
     e.preventDefault();
 
-      setIsLoading(true);
-      axios.get(`${process.env.REACT_APP_BASE_URL}/products?industry=${filter}&search=${query}`)
-      .then(result=> {
-        result=result.data;
-        setList(result);
-        setIsLoading(false);
-      })
-      .catch(err=>console.log(err));
+    setIsLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/products?industry=${filter}&search=${query}`)
+    .then(result=> {
+      result=result.data;
+      setList(result);
+      // setIsLoading(false);
+    })
+    .catch(err=>console.log(err));
+    setIsLoading(false);
       
 
 
