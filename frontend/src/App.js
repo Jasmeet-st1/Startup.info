@@ -77,6 +77,7 @@ function App() {
     };
   
     fetchInitialData();
+    console.log(list);
   },[]);
 
   // search function for both search query and filter
