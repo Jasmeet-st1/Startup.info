@@ -13,6 +13,9 @@ export const CardContext = createContext();
 
 function App() {
 
+  //loading effect
+  const [isLoading, setIsLoading] = useState(true);
+
   // states to store result list and filter list for industry filter
   const [list, setList] = useState([]);
   const [uniqueIndustries, setuniqueIndustries] = useState([]);
@@ -33,6 +36,8 @@ function App() {
 
   // fetch entire list on first render and set industry filter list on first render only
   useEffect(()=>{
+    setIsLoading(true);
+    
     axios.get(`${process.env.REACT_APP_BASE_URL}/products`)
     .then(result=> {
 
@@ -64,7 +69,7 @@ function App() {
 
 
       setuniqueIndustries(options);
-
+      setIsLoading(false);
     })
     .catch(err=>console.log(err));
   },[]);
@@ -73,16 +78,16 @@ function App() {
   // search function for both search query and filter
   function searchQuery(n,e){
     e.preventDefault();
-    
-    setTimeout(()=>{
+
+      setIsLoading(true);
       axios.get(`${process.env.REACT_APP_BASE_URL}/products?industry=${filter}&search=${query}`)
       .then(result=> {
         result=result.data;
         setList(result);
+        setIsLoading(false);
       })
       .catch(err=>console.log(err));
       
-    },300);
 
 
   }
@@ -114,7 +119,7 @@ function App() {
             </div>
           </div>
 
-          <List list={list} />
+          <List list={list} isLoading={isLoading} setIsLoading={setIsLoading}/>
 
 
 
