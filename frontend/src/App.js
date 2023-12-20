@@ -36,63 +36,67 @@ function App() {
 
   // fetch entire list on first render and set industry filter list on first render only
   useEffect(()=>{
-    setIsLoading(true);
-    
-    axios.get(`${process.env.REACT_APP_BASE_URL}/products`)
-    .then(result=> {
-
-      result=result.data;
-
-      setList(result); // set list
-
-      // to compute all unique industries in alphabetical sorted manner
-      let uniqueIndustry = [...new Set(result.map(item => item.IndustryVertical).sort((a, b) => {
-        const charA = a.charAt(0).toLowerCase();
-        const charB = b.charAt(0).toLowerCase();
-    
-        if (charA < charB) {
-          return -1;
-        } else if (charA > charB) {
-          return 1;
-        } else {
-          return 0;
-        }
-      }))];
-
-      uniqueIndustry=["ALL",...uniqueIndustry];
-
-      // getting json for react-select
-      let options=uniqueIndustry.map((str)=>({
-        value:str,
-        label:str
-      }));
-
-
-      setuniqueIndustries(options);
-      // setIsLoading(false);
-    })
-    // .then((result)=>setIsLoading(false))
-    .catch(err=>console.log(err));
-    setIsLoading(false);
+    const fetchInitialData = async () => {
+      try {
+        setIsLoading(true);
+  
+        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
+        const productList = result.data;
+  
+        setList(productList);
+  
+        // Compute all unique industries in alphabetical sorted manner
+        let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
+          const charA = a.charAt(0).toLowerCase();
+          const charB = b.charAt(0).toLowerCase();
+  
+          if (charA < charB) {
+            return -1;
+          } else if (charA > charB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }))];
+  
+        uniqueIndustry = ["ALL", ...uniqueIndustry];
+  
+        // Getting JSON for react-select
+        let options = uniqueIndustry.map((str) => ({
+          value: str,
+          label: str
+        }));
+  
+        setuniqueIndustries(options);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  
+    fetchInitialData();
   },[]);
-
 
   // search function for both search query and filter
   function searchQuery(n,e){
     e.preventDefault();
 
-    setIsLoading(true);
-    axios.get(`${process.env.REACT_APP_BASE_URL}/products?industry=${filter}&search=${query}`)
-    .then(result=> {
-      result=result.data;
-      setList(result);
-      // setIsLoading(false);
-    })
-    .catch(err=>console.log(err));
-    setIsLoading(false);
-      
+    const fetchData = async ()=>{
+      try {
+        setIsLoading(true);
+        let result=await axios.get(`${process.env.REACT_APP_BASE_URL}/products?industry=${filter}&search=${query}`)
+        result=result.data;
+        setList(result);
 
+      } catch (error) {
+        console.log(error);
+      } finally{
+        setIsLoading(false);
+      }
+    };
 
+    fetchData();
   }
 
 
