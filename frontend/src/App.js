@@ -36,11 +36,7 @@ function App() {
 
   // fetch entire list on first render and set industry filter list on first render only
   useEffect(()=>{
-    
-    fetchInitialData();
-  },[]);
-
-  async function fetchInitialData(){
+    async function fetchInitialData(){
       try {
         setIsLoading(true);
   
@@ -79,6 +75,10 @@ function App() {
         setIsLoading(false);
       }
     }
+    fetchInitialData();
+  },[]);
+
+  
   
   // search function for both search query and filter
   function searchQuery(n,e){
