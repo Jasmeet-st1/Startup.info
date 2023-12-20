@@ -69,8 +69,9 @@ function App() {
 
 
       setuniqueIndustries(options);
-      setIsLoading(false);
+      // setIsLoading(false);
     })
+    .then((result)=>setIsLoading(false))
     .catch(err=>console.log(err));
   },[]);
 
