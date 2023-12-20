@@ -47,11 +47,11 @@ export default function List({ list, isLoading, setIsLoading }) {
         return LoadingScreen();
     }
 
-    if (list.length === 0) {
-        return (
-            <p className="text-xl md:text-2xl lg:text-3xl text-center text-red-700">No Data Found. Please Try with some other filter.</p>
-        )
-    }
+    // if (list.length === 0) {
+    //     return (
+    //         <p className="text-xl md:text-2xl lg:text-3xl text-center text-red-700">No Data Found. Please Try with some other filter.</p>
+    //     )
+    // }
 
     const totalItems = list.length;
     const recordPerPage = 60;
