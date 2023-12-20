@@ -12,10 +12,10 @@ env.config();
 const uri = process.env.DB_URI;
 const PORT = process.env.PORT || 8000;
 
-app.use(cors(
-    {
-        // origin: ['https://startup-info.vercel.app/'],
-        origin: '*',
+app.use(
+    cors({
+        origin: ['https://startup-info.vercel.app'],
+        // origin: '*',
         methods: ["POST", "GET"],
         credentials:true
     }
