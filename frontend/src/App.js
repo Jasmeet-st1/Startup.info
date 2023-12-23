@@ -74,7 +74,7 @@ function App() {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(()=>{console.log("loaded"); return false;});
       }
     }
     fetchInitialData();
