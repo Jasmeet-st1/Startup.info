@@ -80,7 +80,7 @@ function App() {
       }
     }
     fetchInitialData();
-  },[list,uniqueIndustries]);
+  },[list,uniqueIndustries,setIsLoading]);
 
   
   
