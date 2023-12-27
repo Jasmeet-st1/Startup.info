@@ -39,38 +39,40 @@ function App() {
     async function fetchInitialData(){
       try {
         setIsLoading(true);
-  
-        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
-        const productList = result.data;
-        console.log(productList);
-  
-        
-        setList(productList);
 
-  
-        // Compute all unique industries in alphabetical sorted manner
-        let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
-          const charA = a.charAt(0).toLowerCase();
-          const charB = b.charAt(0).toLowerCase();
-  
-          if (charA < charB) {
-            return -1;
-          } else if (charA > charB) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }))];
-  
-        uniqueIndustry = ["ALL", ...uniqueIndustry];
-  
-        // Getting JSON for react-select
-        let options = uniqueIndustry.map((str) => ({
-          value: str,
-          label: str
-        }));
-  
-        setuniqueIndustries(options);
+        if(list.length===0){
+
+          
+          const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
+          const productList = result.data;
+          console.log(productList);
+    
+          
+          // Compute all unique industries in alphabetical sorted manner
+          let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
+            const charA = a.charAt(0).toLowerCase();
+            const charB = b.charAt(0).toLowerCase();
+            
+            if (charA < charB) {
+              return -1;
+            } else if (charA > charB) {
+              return 1;
+            } else {
+              return 0;
+            }
+          }))];
+          
+          uniqueIndustry = ["ALL", ...uniqueIndustry];
+          
+          // Getting JSON for react-select
+          let options = uniqueIndustry.map((str) => ({
+            value: str,
+            label: str
+          }));
+          
+          setList(productList);
+          setuniqueIndustries(options);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -78,7 +80,7 @@ function App() {
       }
     }
     fetchInitialData();
-  },[]);
+  },[list,uniqueIndustries]);
 
   
   
