@@ -41,7 +41,7 @@ export default function List({ list, isLoading, setIsLoading }) {
 
         }, 2000);
 
-    }, [page]);
+    }, [page,setIsLoading]);
 
     if (isLoading) {
         return LoadingScreen();
