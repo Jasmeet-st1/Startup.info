@@ -39,80 +39,41 @@ function App() {
     async function fetchInitialData() {
       try {
 
-        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`)
-        .then(result=>{
-          const productList = result.data;
-          console.log(productList);
+        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
+        
+        const productList = result.data;
+        console.log(productList);
 
 
-          // Compute all unique industries in alphabetical sorted manner
-          let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
-            const charA = a.charAt(0).toLowerCase();
-            const charB = b.charAt(0).toLowerCase();
+        // Compute all unique industries in alphabetical sorted manner
+        let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
+          const charA = a.charAt(0).toLowerCase();
+          const charB = b.charAt(0).toLowerCase();
 
-            if (charA < charB) {
-              return -1;
-            } else if (charA > charB) {
-              return 1;
-            } else {
-              return 0;
-            }
-          }))];
+          if (charA < charB) {
+            return -1;
+          } else if (charA > charB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }))];
 
-          uniqueIndustry = ["ALL", ...uniqueIndustry];
+        uniqueIndustry = ["ALL", ...uniqueIndustry];
 
-          // Getting JSON for react-select
-          let options = uniqueIndustry.map((str) => ({
-            value: str,
-            label: str
-          }));
+        // Getting JSON for react-select
+        let options = uniqueIndustry.map((str) => ({
+          value: str,
+          label: str
+        }));
 
-          // setList(productList);
-          // setuniqueIndustries(options);
-          // setIsLoading(() => { console.log("loaded"); return false; });
-
-          setList(()=>{
-            setuniqueIndustries(()=>{
-              setIsLoading(() => { console.log("loaded"); return false; });
-              return options;
-            })
-            return productList;
-          })
-        });
-
-        // const productList = result.data;
-        // console.log(productList);
-
-
-        // // Compute all unique industries in alphabetical sorted manner
-        // let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
-        //   const charA = a.charAt(0).toLowerCase();
-        //   const charB = b.charAt(0).toLowerCase();
-
-        //   if (charA < charB) {
-        //     return -1;
-        //   } else if (charA > charB) {
-        //     return 1;
-        //   } else {
-        //     return 0;
-        //   }
-        // }))];
-
-        // uniqueIndustry = ["ALL", ...uniqueIndustry];
-
-        // // Getting JSON for react-select
-        // let options = uniqueIndustry.map((str) => ({
-        //   value: str,
-        //   label: str
-        // }));
-
-        // setList(productList);
-        // setuniqueIndustries(options);
+        setList(productList);
+        setuniqueIndustries(options);
         
       } catch (error) {
         console.log(error);
       } finally {
-        // setIsLoading(() => { console.log("loaded"); return false; });
+        setIsLoading(() => { console.log("loaded"); return false; });
       }
     }
     fetchInitialData();
