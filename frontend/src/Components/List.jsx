@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-export default function List({ list, setIsLoading }) {
+export default function List({ list, isLoading, setIsLoading }) {
 
     const [page, setPage] = useState(1);
     
     useEffect(() => {
-        setIsLoading(()=>{console.log("list true"); return true;});
+        if(!isLoading){
 
-        window.scrollTo(0,0);
-
-        setTimeout(() => {
-            setIsLoading(()=>{console.log("list false"); return false;});
-        }, 1500);
+            setIsLoading(()=>{console.log("list true"); return true;});
+            
+            window.scrollTo(0,0);
+            
+            setTimeout(() => {
+                setIsLoading(()=>{console.log("list false"); return false;});
+            }, 1500);
+        }
 
     }, [page]);
-    
+
     useEffect(() => {
         setPage(1);
     }, [list]);
