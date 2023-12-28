@@ -10,12 +10,12 @@ export default function List({ list, setIsLoading }) {
     }, [list]);
 
     useEffect(() => {
-        setIsLoading(true);
+        setIsLoading(()=>{console.log("list true"); return true;});
 
         window.scrollTo(0,0);
 
         setTimeout(() => {
-            setIsLoading(false);
+            setIsLoading(()=>{console.log("list true"); return false;});
         }, 1500);
 
     }, [page]);
