@@ -12,12 +12,14 @@ export default function List({ list, isLoading, setIsLoading }) {
             
             window.scrollTo(0,0);
             
-            setTimeout(() => {
-                setIsLoading(()=>{console.log("list false"); return false;});
-            }, 1500);
+            const delay = setTimeout(() => {
+                setIsLoading(false);
+            }, 1000); // Adjust the delay time as needed
+        
+            return () => clearTimeout(delay);
         }
 
-    }, [page]);
+    }, [page,setIsLoading]);
 
     // useEffect(() => {
     //     setPage(1);
