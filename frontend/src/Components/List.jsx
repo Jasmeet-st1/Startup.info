@@ -36,8 +36,10 @@ export default function List({ list, isLoading, setIsLoading }) {
 
         window.scrollTo(0,0);
 
-        setIsLoading(false);
+        setTimeout(() => {
+            setIsLoading(false);
 
+        }, 1500);
 
     }, [page,setIsLoading]);
 
