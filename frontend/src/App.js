@@ -11,6 +11,7 @@ import Addform from './Components/Addform.jsx';
 
 export const CardContext = createContext();
 
+let isInit=false;
 function App() {
 
   //loading effect
@@ -36,7 +37,9 @@ function App() {
 
   // fetch entire list on first render and set industry filter list on first render only
   useEffect(() => {
-    async function fetchInitialData() {
+    // async function fetchInitialData() {
+    if(!isInit){
+      isInit=true;
       try {
 
         const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
@@ -76,7 +79,8 @@ function App() {
         setIsLoading(() => { console.log("loaded"); return false; });
       }
     }
-    fetchInitialData();
+    // }
+    // fetchInitialData();
   }, []);
 
 
