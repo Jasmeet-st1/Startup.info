@@ -46,29 +46,29 @@ function App() {
 
 
         // Compute all unique industries in alphabetical sorted manner
-        let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
-          const charA = a.charAt(0).toLowerCase();
-          const charB = b.charAt(0).toLowerCase();
+        // let uniqueIndustry = [...new Set(productList.map(item => item.IndustryVertical).sort((a, b) => {
+        //   const charA = a.charAt(0).toLowerCase();
+        //   const charB = b.charAt(0).toLowerCase();
 
-          if (charA < charB) {
-            return -1;
-          } else if (charA > charB) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }))];
+        //   if (charA < charB) {
+        //     return -1;
+        //   } else if (charA > charB) {
+        //     return 1;
+        //   } else {
+        //     return 0;
+        //   }
+        // }))];
 
-        uniqueIndustry = ["ALL", ...uniqueIndustry];
+        // uniqueIndustry = ["ALL", ...uniqueIndustry];
 
-        // Getting JSON for react-select
-        let options = uniqueIndustry.map((str) => ({
-          value: str,
-          label: str
-        }));
+        // // Getting JSON for react-select
+        // let options = uniqueIndustry.map((str) => ({
+        //   value: str,
+        //   label: str
+        // }));
 
         setList(productList);
-        setuniqueIndustries(options);
+        // setuniqueIndustries(options);
         
       } catch (error) {
         console.log(error);
