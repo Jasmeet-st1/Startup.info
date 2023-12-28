@@ -48,7 +48,7 @@ export default function Addform({length, formOpen, setFormOpen}) {
     function handleSubmit(e){
         e.preventDefault();
 
-        axios.post('http://localhost:5000/addStartup',data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/addStartup`,data)
         .then(res=>{
             setSubmitted(true);
             setPage(1);
