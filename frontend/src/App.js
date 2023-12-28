@@ -69,6 +69,7 @@ function App() {
 
           setList(productList);
           setuniqueIndustries(options);
+          setIsLoading(() => { console.log("loaded"); return false; });
         });
 
         // const productList = result.data;
@@ -103,7 +104,7 @@ function App() {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(() => { console.log("loaded"); return false; });
+        // setIsLoading(() => { console.log("loaded"); return false; });
       }
     }
     fetchInitialData();
