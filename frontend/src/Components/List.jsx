@@ -4,11 +4,7 @@ import Card from "./Card";
 export default function List({ list, setIsLoading }) {
 
     const [page, setPage] = useState(1);
-
-    useEffect(() => {
-        setPage(1);
-    }, [list]);
-
+    
     useEffect(() => {
         setIsLoading(()=>{console.log("list true"); return true;});
 
@@ -19,6 +15,11 @@ export default function List({ list, setIsLoading }) {
         }, 1500);
 
     }, [page]);
+    
+    useEffect(() => {
+        setPage(1);
+    }, [list]);
+
 
     if (list.length === 0) {
         return (
