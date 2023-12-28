@@ -19,9 +19,9 @@ export default function List({ list, isLoading, setIsLoading }) {
 
     }, [page]);
 
-    useEffect(() => {
-        setPage(1);
-    }, [list]);
+    // useEffect(() => {
+    //     setPage(1);
+    // }, [list]);
 
 
     if (list.length === 0) {
