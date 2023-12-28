@@ -6,20 +6,15 @@ export default function List({ list, isLoading, setIsLoading }) {
     const [page, setPage] = useState(1);
     
     useEffect(() => {
-        if(!isLoading){
+        // setIsLoading(()=>{console.log("list true"); return true;});
 
-            setIsLoading(()=>{console.log("list true"); return true;});
-            
-            window.scrollTo(0,0);
-            
-            const delay = setTimeout(() => {
-                setIsLoading(false);
-            }, 1000); // Adjust the delay time as needed
-        
-            return () => clearTimeout(delay);
-        }
+        window.scrollTo(0,0);
 
-    }, [page,setIsLoading]);
+        // setTimeout(() => {
+        //     setIsLoading(()=>{console.log("list false"); return false;});
+        // }, 1500);
+
+    }, [page]);
 
     // useEffect(() => {
     //     setPage(1);
