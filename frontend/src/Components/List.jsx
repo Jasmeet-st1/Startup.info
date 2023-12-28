@@ -27,21 +27,21 @@ export default function List({ list, isLoading, setIsLoading }) {
     }
 
 
-    // useEffect(() => {
-    //     setPage(1);
-    // }, [list]);
+    useEffect(() => {
+        setPage(1);
+    }, [list]);
 
-    // useEffect(() => {
-    //     setIsLoading(true);
+    useEffect(() => {
+        setIsLoading(true);
 
-    //     window.scrollTo(0,0);
+        window.scrollTo(0,0);
 
-    //     setTimeout(() => {
-    //         setIsLoading(false);
+        setTimeout(() => {
+            setIsLoading(false);
 
-    //     }, 1500);
+        }, 1500);
 
-    // }, [page,setIsLoading]);
+    }, [page,setIsLoading]);
 
     if (isLoading) {
         return LoadingScreen();
