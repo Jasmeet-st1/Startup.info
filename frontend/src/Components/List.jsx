@@ -15,7 +15,7 @@ export default function List({ list, setIsLoading }) {
         window.scrollTo(0,0);
 
         setTimeout(() => {
-            setIsLoading(()=>{console.log("list true"); return false;});
+            setIsLoading(()=>{console.log("list false"); return false;});
         }, 1500);
 
     }, [page]);
