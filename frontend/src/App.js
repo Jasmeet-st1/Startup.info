@@ -67,9 +67,17 @@ function App() {
             label: str
           }));
 
-          setList(productList);
-          setuniqueIndustries(options);
-          setIsLoading(() => { console.log("loaded"); return false; });
+          // setList(productList);
+          // setuniqueIndustries(options);
+          // setIsLoading(() => { console.log("loaded"); return false; });
+
+          setList(()=>{
+            setuniqueIndustries(()=>{
+              setIsLoading(() => { console.log("loaded"); return false; });
+              return options;
+            })
+            return productList;
+          })
         });
 
         // const productList = result.data;
