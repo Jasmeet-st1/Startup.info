@@ -8,6 +8,7 @@ import List from './Components/List.jsx';
 
 import DetailCard from './Components/DetailCard.jsx';
 import Addform from './Components/Addform.jsx';
+import Loading from './Components/Loading.jsx'
 
 export const CardContext = createContext();
 
@@ -133,8 +134,7 @@ function App() {
             </div>
           </div>
 
-          <List list={list} isLoading={isLoading} setIsLoading={setIsLoading} />
-
+          {isLoading ? <Loading /> : <List list={list} setIsLoading={setIsLoading} />}
 
 
           <div className='w-full md:w-4/5 lg:w-3/5 mx-auto rounded-lg mt-20'>
