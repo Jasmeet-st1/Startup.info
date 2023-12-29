@@ -5,46 +5,52 @@ export default function List({ list, isLoading, setIsLoading }) {
 
     const [page, setPage] = useState(1);
     
-    useEffect(() => {
-        // setIsLoading(()=>{console.log("list true"); return true;});
+    // useEffect(() => {
+    //     // setIsLoading(()=>{console.log("list true"); return true;});
 
-        window.scrollTo(0,0);
+    //     window.scrollTo(0,0);
+        
+    //     // setTimeout(() => {
+    //     //     setIsLoading(()=>{console.log("list false"); return false;});
+    //     // }, 1500);
 
-        // setTimeout(() => {
-        //     setIsLoading(()=>{console.log("list false"); return false;});
-        // }, 1500);
-
-    }, [page]);
-
+    // }, [page]);
+    
     // useEffect(() => {
     //     setPage(1);
     // }, [list]);
-
-
+    
+    
     if (list.length === 0) {
         return (
             <p className="text-xl md:text-2xl lg:text-3xl text-center text-red-700">No Data Found. Please Try with some other filter.</p>
-        )
+            )
     }
-
+    
     const totalItems = list.length;
     const recordPerPage = 60;
-
+    
     const lastIndex = recordPerPage * page;
     const firstIndex = lastIndex - recordPerPage;
-
+    
     const records = list.slice(firstIndex, lastIndex);
     const totPages = Math.ceil(totalItems / recordPerPage);
-
+    
     function prev() {
         if (page > 1) {
-            setPage(page - 1);
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                setPage(page - 1);
+            }, 1000);
         }
     }
 
     function next() {
         if (page < totPages) {
-            setPage(page + 1);
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                setPage(page + 1);
+            }, 1000);
         }
     }
 
